@@ -21,7 +21,7 @@ const seed = async () => {
     const alice = await User.create({
       name: "Alice Admin",
       email: "alice@example.com",
-      password: "password123",
+      passwordHash: await bcrypt.hash("password123", 10),
       username: "alice",
       isVerified: true
     });
@@ -29,7 +29,7 @@ const seed = async () => {
     const bob = await User.create({
       name: "Bob User",
       email: "bob@example.com",
-      password: "password123",
+      passwordHash: await bcrypt.hash("password123", 10),
       username: "bob",
       isVerified: true
     });
@@ -37,9 +37,9 @@ const seed = async () => {
     console.log("Creating demo links...");
     await Link.create({
       userId: alice._id,
-      originalUrl: "https://github.com",
+      destinationUrl: "https://github.com",
       shortCode: "github",
-      title: "My GitHub"
+      slugType: "custom"
     });
 
     console.log("Creating demo bio profile...");
