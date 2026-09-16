@@ -26,7 +26,7 @@ export default function BioStudio() {
       toast.success("Profile updated");
       queryClient.invalidateQueries({ queryKey: ["bioProfile"] });
     },
-    onError: () => toast.error("Failed to update profile")
+    onError: (err: any) => toast.error(err.response?.data?.error?.message || "Failed to update profile")
   });
 
   const addLinkMutation = useMutation({

@@ -3,7 +3,7 @@ import { z } from "zod";
 export const updateBioProfileSchema = z.object({
   body: z.object({
     displayName: z.string().min(2, "Display name must be at least 2 characters").optional(),
-    bio: z.string().max(160, "Bio cannot exceed 160 characters").optional(),
+    bio: z.string().max(500, "Bio cannot exceed 500 characters").optional(),
     avatar: z.string().url("Must be a valid URL").optional().or(z.literal("")),
     theme: z.enum(["minimal-light", "dark-slate", "gradient"]).optional(),
   }),
