@@ -70,7 +70,7 @@ export default function CreateLinkDialog({ children }: { children: React.ReactNo
             <label className="text-sm font-medium">Custom Slug <span className="text-muted-foreground font-normal">(Optional)</span></label>
             <div className="flex rounded-md shadow-sm">
               <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-input bg-muted text-muted-foreground sm:text-sm">
-                linkhub.com/r/
+                {(import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1").replace(/\/api\/v1\/?$/, "").replace(/^https?:\/\//, "")}/r/
               </span>
               <Input 
                 className="rounded-l-none" 

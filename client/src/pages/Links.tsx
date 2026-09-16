@@ -99,7 +99,8 @@ export default function Links() {
                   </TableRow>
                 ) : (
                   data?.data?.map((link: any) => {
-                    const shortUrl = `${import.meta.env.VITE_CLIENT_URL || window.location.origin}/r/${link.shortCode}`;
+                    const baseUrl = (import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1").replace(/\/api\/v1\/?$/, "");
+                    const shortUrl = `${baseUrl}/r/${link.shortCode}`;
                     return (
                       <TableRow key={link._id}>
                         <TableCell>
