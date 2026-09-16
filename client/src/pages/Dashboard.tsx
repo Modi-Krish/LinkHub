@@ -3,9 +3,19 @@ import { useAuth } from "@/stores/authStore";
 import { Link as RouterLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Link, MousePointerClick, User } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@/services/api";
 
 export default function Dashboard() {
   const { user } = useAuth();
+
+  const { data: summary } = useQuery({
+    queryKey: ["summary"],
+    queryFn: async () => {
+      const res = await api.get("/analytics/summary");
+      return res.data.data;
+    }
+  });
 
   return (
     <div className="space-y-6">
@@ -21,8 +31,7 @@ export default function Dashboard() {
             <Link className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">+2 from last month</p>
+            <div className="text-2xl font-bold">{summary?.totalLinks || 0}</div>
           </CardContent>
         </Card>
         
@@ -32,8 +41,7 @@ export default function Dashboard() {
             <MousePointerClick className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1,245</div>
-            <p className="text-xs text-muted-foreground">+18% from last month</p>
+            <div className="text-2xl font-bold">{summary?.totalClicks || 0}</div>
           </CardContent>
         </Card>
 
@@ -43,8 +51,7 @@ export default function Dashboard() {
             <User className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">342</div>
-            <p className="text-xs text-muted-foreground">+5% from last month</p>
+            <div className="text-2xl font-bold">{summary?.bioViews || 0}</div>
           </CardContent>
         </Card>
       </div>

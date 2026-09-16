@@ -109,7 +109,16 @@ export const refresh = async (req: Request, res: Response, next: NextFunction) =
 
     res.status(200).json({
       success: true,
-      data: { message: "Tokens refreshed successfully" },
+      data: {
+        message: "Tokens refreshed successfully",
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          username: user.username,
+          role: user.role,
+        }
+      },
     });
   } catch (error) {
     next(error);

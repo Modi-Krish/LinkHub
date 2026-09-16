@@ -36,11 +36,12 @@ export const useAuth = create<AuthState>((set) => ({
   },
   checkAuth: async () => {
     try {
-      // In a real app, you might have a /auth/me endpoint.
-      // Here we rely on the refresh interceptor if tokens exist.
-      await api.post("/auth/refresh");
-      // For this simple implementation, we'll assume they are authenticated if refresh succeeds
-      set({ isAuthenticated: true, isLoading: false });
+      const response = await api.post("/auth/refresh");
+      set({ 
+        user: response.data?.data?.user || null, 
+        isAuthenticated: true, 
+        isLoading: false 
+      });
     } catch (error) {
       set({ user: null, isAuthenticated: false, isLoading: false });
     }

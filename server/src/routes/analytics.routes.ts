@@ -6,6 +6,7 @@ const router = Router();
 
 router.use(protect);
 
+router.get("/summary", analyticsController.getSummary);
 router.get("/:id/analytics", analyticsController.getLinkAnalytics);
 
 export default router;
