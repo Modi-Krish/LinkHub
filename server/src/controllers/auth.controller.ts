@@ -6,20 +6,22 @@ import { env } from "../config/env";
 import { AppError } from "../utils/AppError";
 
 const setCookies = (res: Response, accessToken: string, refreshToken: string) => {
+  const isProd = env.NODE_ENV === "production";
+  
   res.cookie("accessToken", accessToken, {
     httpOnly: true,
-    secure: env.COOKIE_SECURE,
-    sameSite: "lax",
-    domain: env.COOKIE_DOMAIN,
+    secure: env.COOKIE_SECURE || isProd,
+    sameSite: isProd ? "none" : "lax",
+    domain: env.COOKIE_DOMAIN || undefined,
     path: "/",
     maxAge: 15 * 60 * 1000, // 15 mins
   });
 
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
-    secure: env.COOKIE_SECURE,
-    sameSite: "lax",
-    domain: env.COOKIE_DOMAIN,
+    secure: env.COOKIE_SECURE || isProd,
+    sameSite: isProd ? "none" : "lax",
+    domain: env.COOKIE_DOMAIN || undefined,
     path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
