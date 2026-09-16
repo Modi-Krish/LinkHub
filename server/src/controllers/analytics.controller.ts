@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import * as analyticsService from "../services/analytics.service";
 import { Link } from "../models/Link";
-import { AppError } from "../utils/AppError";
 import mongoose from "mongoose";
+import { AppError } from "../utils/AppError";
 
 import { ClickEvent } from "../models/ClickEvent";
+import { BioProfile } from "../models/BioProfile";
 
 export const getSummary = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -17,12 +18,15 @@ export const getSummary = async (req: Request, res: Response, next: NextFunction
     const linkIds = userLinks.map(l => l._id);
     const totalClicks = await ClickEvent.countDocuments({ linkId: { $in: linkIds } });
 
+    const profile = await BioProfile.findOne({ userId });
+    const bioViews = profile?.views || 0;
+
     res.status(200).json({
       success: true,
       data: {
         totalLinks,
         totalClicks,
-        bioViews: 0 // Mock bio views for now since there's no views collection yet
+        bioViews
       }
     });
   } catch (error) {

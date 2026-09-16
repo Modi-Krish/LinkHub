@@ -7,6 +7,7 @@ export interface IBioProfile extends Document {
   bio?: string;
   avatar?: string;
   theme: "minimal-light" | "dark-slate" | "gradient";
+  views: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -19,6 +20,7 @@ const BioProfileSchema = new Schema(
     bio: { type: String },
     avatar: { type: String },
     theme: { type: String, enum: ["minimal-light", "dark-slate", "gradient"], default: "minimal-light" },
+    views: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
