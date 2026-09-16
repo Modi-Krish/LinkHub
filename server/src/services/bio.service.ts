@@ -65,12 +65,17 @@ export const reorderSocialLinks = async (userId: string, orderedIds: string[]) =
   await Promise.all(updates);
 };
 
-export const getPublicProfile = async (username: string) => {
-  const profile = await BioProfile.findOneAndUpdate(
-    { username },
-    { $inc: { views: 1 } },
-    { new: true }
-  );
+export const getPublicProfile = async (username: string, isPreview: boolean = false) => {
+  let profile;
+  if (isPreview) {
+    profile = await BioProfile.findOne({ username });
+  } else {
+    profile = await BioProfile.findOneAndUpdate(
+      { username },
+      { $inc: { views: 1 } },
+      { new: true }
+    );
+  }
   if (!profile) throw new AppError(404, "NOT_FOUND", "Profile not found");
 
   const links = await SocialLink.find({ profileId: profile._id, enabled: true }).sort({ order: 1 });

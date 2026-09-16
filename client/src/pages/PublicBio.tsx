@@ -1,14 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getPublicBio } from "@/services/bio.service";
 import { getIcon } from "@/components/bio/SocialLinkCard";
 
 export default function PublicBio() {
   const { username } = useParams<{ username: string }>();
+  const [searchParams] = useSearchParams();
+  const isPreview = searchParams.get("preview") === "true";
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["publicBio", username],
-    queryFn: () => getPublicBio(username as string),
+    queryKey: ["publicBio", username, isPreview],
+    queryFn: () => getPublicBio(username as string, isPreview),
     enabled: !!username,
     retry: false
   });

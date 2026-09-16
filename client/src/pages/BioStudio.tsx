@@ -199,7 +199,7 @@ export default function BioStudio() {
           
           <iframe 
             key={dataUpdatedAt || "preview"}
-            src={`/bio/${profile?.username}?t=${dataUpdatedAt || ''}`} 
+            src={`/bio/${profile?.username}?preview=true&t=${dataUpdatedAt || ''}`} 
             className="w-full h-full border-0" 
             title="Bio Preview"
           />

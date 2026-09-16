@@ -29,7 +29,9 @@ export const reorderSocialLinks = async (orderedIds: string[]) => {
   return response.data.data;
 };
 
-export const getPublicBio = async (username: string) => {
-  const response = await api.get(`/public/bio/${username}`);
+export const getPublicBio = async (username: string, preview: boolean = false) => {
+  const response = await api.get(`/public/bio/${username}`, {
+    params: { preview }
+  });
   return response.data.data;
 };

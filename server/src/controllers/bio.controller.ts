@@ -57,7 +57,8 @@ export const reorderSocialLinks = async (req: Request, res: Response, next: Next
 
 export const getPublicBio = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const data = await bioService.getPublicProfile(req.params.username as string);
+    const isPreview = req.query.preview === "true";
+    const data = await bioService.getPublicProfile(req.params.username as string, isPreview);
     res.status(200).json({ success: true, data });
   } catch (error) {
     next(error);
