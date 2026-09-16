@@ -4,7 +4,7 @@ import { Link } from "../models/Link";
 import { AppError } from "../utils/AppError";
 import mongoose from "mongoose";
 
-import { Click } from "../models/Click";
+import { ClickEvent } from "../models/ClickEvent";
 
 export const getSummary = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -15,7 +15,7 @@ export const getSummary = async (req: Request, res: Response, next: NextFunction
     // Total clicks across all links owned by this user
     const userLinks = await Link.find({ userId }).select("_id");
     const linkIds = userLinks.map(l => l._id);
-    const totalClicks = await Click.countDocuments({ linkId: { $in: linkIds } });
+    const totalClicks = await ClickEvent.countDocuments({ linkId: { $in: linkIds } });
 
     res.status(200).json({
       success: true,
