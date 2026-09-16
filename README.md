@@ -1,5 +1,10 @@
 # LinkHub — Branded Short-Link & Bio-Link Hub
 
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+
 > **Assessment Project 04** — Full-Stack MERN Application
 
 LinkHub is a web application that combines a **high-performance URL-shortening engine** with a **customizable Link-in-Bio platform**. It allows authenticated users to create short URLs, track click analytics, manage their link library, and build a public bio page with multiple themes.
