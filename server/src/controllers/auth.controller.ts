@@ -7,12 +7,13 @@ import { AppError } from "../utils/AppError";
 
 const setCookies = (res: Response, accessToken: string, refreshToken: string) => {
   const isProd = env.NODE_ENV === "production";
-  
+  const domain = isProd && env.COOKIE_DOMAIN === "localhost" ? undefined : env.COOKIE_DOMAIN;
+
   res.cookie("accessToken", accessToken, {
     httpOnly: true,
     secure: env.COOKIE_SECURE || isProd,
     sameSite: isProd ? "none" : "lax",
-    domain: env.COOKIE_DOMAIN || undefined,
+    domain: domain || undefined,
     path: "/",
     maxAge: 15 * 60 * 1000, // 15 mins
   });
@@ -21,7 +22,7 @@ const setCookies = (res: Response, accessToken: string, refreshToken: string) =>
     httpOnly: true,
     secure: env.COOKIE_SECURE || isProd,
     sameSite: isProd ? "none" : "lax",
-    domain: env.COOKIE_DOMAIN || undefined,
+    domain: domain || undefined,
     path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
