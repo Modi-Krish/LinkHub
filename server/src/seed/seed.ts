@@ -21,7 +21,7 @@ const seed = async () => {
     const alice = await User.create({
       name: "Alice Admin",
       email: "alice@example.com",
-      passwordHash: await bcrypt.hash("password123", 10),
+      passwordHash: await bcrypt.hash("securePassword123", 10),
       username: "alice",
       isVerified: true
     });
@@ -29,7 +29,7 @@ const seed = async () => {
     const bob = await User.create({
       name: "Bob User",
       email: "bob@example.com",
-      passwordHash: await bcrypt.hash("password123", 10),
+      passwordHash: await bcrypt.hash("securePassword456", 10),
       username: "bob",
       isVerified: true
     });
