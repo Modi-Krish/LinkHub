@@ -7,7 +7,7 @@
 
 > **Assessment Project 04** — Full-Stack MERN Application
 
-LinkHub is a web application that combines a **high-performance URL-shortening engine** with a **customizable Link-in-Bio platform**. It allows authenticated users to create short URLs, track click analytics, manage their link library, and build a public bio page with multiple themes.
+LinkHub is a web application that combines a **high-performance URL-shortening engine** with a **customizable Link-in-Bio platform**. It allows authenticated users to create short URLs, track click analytics, and publish a personalized bio page.
 
 ---
 
@@ -62,12 +62,12 @@ Com.bot/
 │   ├── src/
 │   │   ├── config/             # db.ts, env.ts (Zod-validated), cors.ts
 │   │   ├── controllers/        # auth, link, analytics, bio controllers
-│   │   ├── middleware/         # auth, error, rateLimit, validate
-│   │   ├── models/             # User, Link, ClickEvent, BioProfile, SocialLink, RefreshToken, PasswordResetToken
-│   │   ├── routes/             # auth, link, analytics, bio, redirect, public
-│   │   ├── services/           # auth, link, analytics, bio services
-│   │   ├── utils/              # shortCode, ipHash, AppError
-│   │   ├── seed/               # seed.ts (demo data)
+│   │   ├── middleware/          # auth, error, rateLimit, validate
+│   │   ├── models/              # User, Link, ClickEvent, BioProfile, SocialLink, RefreshToken, PasswordResetToken
+│   │   ├── routes/              # auth, link, analytics, bio, redirect, public
+│   │   ├── services/            # auth, link, analytics, bio services
+│   │   ├── utils/               # shortCode, ipHash, AppError
+│   │   ├── seed/                # seed.ts (demo data)
 │   │   ├── app.ts              # Express middleware stack
 │   │   └── server.ts           # Entry point
 │   ├── tests/
@@ -136,6 +136,12 @@ This creates demo users, links with click events, and a bio profile.
 **Demo credentials:**
 - Email: `alice@example.com` / Password: `password123` (Admin)
 - Email: `bob@example.com` / Password: `password123` (User)
+
+**Public tester account:**
+- Email: `tester@example.com`
+- Password: `123456`
+
+Use the public tester account to sign in and preview the website without creating a personal account.
 
 ### 5. Start the development servers
 
