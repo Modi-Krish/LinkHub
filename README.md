@@ -7,7 +7,7 @@
 
 > **Assessment Project 04** — Full-Stack MERN Application
 
-LinkHub is a web application that combines a **high-performance URL-shortening engine** with a **customizable Link-in-Bio platform**. It allows authenticated users to create short URLs, track click analytics, and publish a personalized bio page.
+LinkHub is a web application that combines a **high-performance URL-shortening engine** with a **customizable Link-in-Bio platform**. It allows authenticated users to create short URLs, track click analytics, and customize their public bio pages.
 
 ---
 
@@ -132,16 +132,6 @@ npm run seed
 ```
 
 This creates demo users, links with click events, and a bio profile.
-
-**Demo credentials:**
-- Email: `alice@example.com` / Password: `password123` (Admin)
-- Email: `bob@example.com` / Password: `password123` (User)
-
-**Public tester account:**
-- Email: `tester@example.com`
-- Password: `123456`
-
-Use the public tester account to sign in and preview the website without creating a personal account.
 
 ### 5. Start the development servers
 
