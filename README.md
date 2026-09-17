@@ -133,6 +133,12 @@ npm run seed
 
 This creates demo users, links with click events, and a bio profile.
 
+**Public tester account:**
+- Email: `tester@example.com`
+- Password: `123456`
+
+Use the public tester account to sign in and preview the website without creating a personal account.
+
 ### 5. Start the development servers
 
 ```bash
